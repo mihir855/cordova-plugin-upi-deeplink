@@ -1,0 +1,33 @@
+{
+  "name": "cordova-plugin-upi-deeplink",
+  "version": "1.0.0",
+  "description": "Cordova plugin to handle UPI payment deep links (upi://, phonepe://, paytmmp://, tez://) inside WebView and InAppBrowser for both Android and iOS.",
+  "cordova": {
+    "id": "cordova-plugin-upi-deeplink",
+    "platforms": ["android","ios"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mihir855/cordova-plugin-upi-deeplink"
+  },
+  "keywords": [
+    "cordova",
+    "cordova-android",
+    "cordova-ios",
+    "upi",
+    "deeplink",
+    "payments",
+    "phonepe",
+    "paytm",
+    "tez",
+    "plugin"
+  ],
+  "author": "Mihir Soni",
+  "license": "MIT",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=9.0.0"
+    }
+  ]
+}

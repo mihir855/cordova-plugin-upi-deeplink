@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-upi-deeplink"
+        version="1.0.0">
+
+    <name>UPILinkPlugin</name>
+    <description>Cordova plugin to handle UPI payment deep links in WebView</description>
+    <license>MIT</license>
+    <keywords>cordova, upi, deeplink, android, ios, webview</keywords>
+    <js-module src="www/UPILinkPlugin.js" name="UPILinkPlugin">
+        <clobbers target="UPILinkPlugin"/>
+    </js-module>
+
+    <!-- Android -->
+    <platform name="android">
+        <source-file src="src/android/UPILinkPlugin.java" target-dir="src/"/>
+    </platform>
+
+    <!-- iOS -->
+    <platform name="ios">
+        <source-file src="src/ios/UPILinkPlugin.m" />
+    </platform>
+</plugin>
