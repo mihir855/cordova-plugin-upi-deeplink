@@ -1,5 +1,6 @@
 #import <Cordova/CDVPlugin.h>
 #import <UIKit/UIKit.h>
+#import "UPILinkPlugin.h"
 
 @interface UPILinkPlugin : CDVPlugin
 - (void)open:(CDVInvokedUrlCommand*)command;
@@ -73,3 +74,4 @@
 }
 
 @end
+
