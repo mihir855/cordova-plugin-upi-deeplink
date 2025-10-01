@@ -19,5 +19,7 @@
     <!-- iOS -->
     <platform name="ios">
         <source-file src="src/ios/UPILinkPlugin.m" />
+        <header-file src="src/ios/UPILinkPlugin.h" />
     </platform>
 </plugin>
+
