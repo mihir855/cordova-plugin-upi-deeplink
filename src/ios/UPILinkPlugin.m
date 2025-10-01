@@ -1,4 +1,4 @@
-#import <Cordova/CDV.h>
+#import <Cordova/CDVPlugin.h>
 #import <WebKit/WebKit.h>
 
 @interface UPILinkPlugin : CDVPlugin <WKNavigationDelegate>
@@ -7,8 +7,10 @@
 @implementation UPILinkPlugin
 
 - (void)pluginInitialize {
-    WKWebView* wkWebView = (WKWebView*)self.webView;
-    wkWebView.navigationDelegate = self;
+    if ([self.webView isKindOfClass:[WKWebView class]]) {
+        WKWebView *wkWebView = (WKWebView*)self.webView;
+        wkWebView.navigationDelegate = self;
+    }
 }
 
 - (void)webView:(WKWebView*)webView
@@ -18,25 +20,32 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     NSURL *url = navigationAction.request.URL;
     NSString *scheme = url.scheme.lowercaseString;
 
-    if ([scheme isEqualToString:@"upi"] ||
-        [scheme isEqualToString:@"phonepe"] ||
-        [scheme isEqualToString:@"paytmmp"] ||
-        [scheme isEqualToString:@"tez"] ||
-        [scheme isEqualToString:@"gpay"] ||
-        [scheme isEqualToString:@"bhim"] ||
-        [scheme isEqualToString:@"amazonpay"] ||
-        [scheme isEqualToString:@"mobikwik"] ||
-        [scheme isEqualToString:@"freecharge"] ||
-        [scheme isEqualToString:@"truecaller"] ||
-        [scheme isEqualToString:@"whatsapp"]) {
-        
+    if ([scheme hasPrefix:@"upi"] ||
+        [scheme hasPrefix:@"phonepe"] ||
+        [scheme hasPrefix:@"paytmmp"] ||
+        [scheme hasPrefix:@"gpay"] ||
+        [scheme hasPrefix:@"tez"] ||
+        [scheme hasPrefix:@"bhim"] ||
+        [scheme hasPrefix:@"amazonpay"] ||
+        [scheme hasPrefix:@"mobikwik"] ||
+        [scheme hasPrefix:@"freecharge"] ||
+        [scheme hasPrefix:@"truecaller"] ||
+        [scheme hasPrefix:@"whatsapp"]) {
+
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+            } else {
+                [[UIApplication sharedApplication] openURL:url];
+            }
         } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
                 message:@"No UPI supported application found"
                 preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK"
+                style:UIAlertActionStyleDefault
+                handler:nil];
+            [alert addAction:ok];
             [self.viewController presentViewController:alert animated:YES completion:nil];
         }
 
