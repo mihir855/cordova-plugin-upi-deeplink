@@ -20,6 +20,13 @@
     <platform name="ios">
         <source-file src="src/ios/UPILinkPlugin.m" />
         <header-file src="src/ios/UPILinkPlugin.h" />
+
+        <config-file target="config.xml" parent="/*">
+        <feature name="UPILinkPlugin">
+            <param name="ios-package" value="UPILinkPlugin"/>
+        </feature>
+    </config-file>
     </platform>
 </plugin>
+
 
