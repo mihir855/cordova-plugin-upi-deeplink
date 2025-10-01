@@ -2,10 +2,6 @@
 #import <UIKit/UIKit.h>
 #import "UPILinkPlugin.h"
 
-@interface UPILinkPlugin : CDVPlugin
-- (void)open:(CDVInvokedUrlCommand*)command;
-@end
-
 @implementation UPILinkPlugin
 
 // JS will call: cordova.exec(successCb, errorCb, "UPILinkPlugin", "open", [url]);
@@ -74,4 +70,5 @@
 }
 
 @end
+
 
